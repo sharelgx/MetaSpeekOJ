@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}创建选择题{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">创建选择题</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- 基本信息 -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">题目标题 <span class="text-danger">*</span></label>
+                            <input type="text" id="title" name="title" required class="form-control" placeholder="请输入题目标题">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="description" class="form-label">题目描述 <span class="text-danger">*</span></label>
+                            <textarea id="description" name="description" rows="6" required class="form-control" placeholder="请输入题目描述，支持Markdown格式"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="explanation" class="form-label">题目解析</label>
+                            <textarea id="explanation" name="explanation" rows="4" class="form-control" placeholder="请输入题目解析（可选），支持Markdown格式"></textarea>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="difficulty" class="form-label">难度等级</label>
+                                <select id="difficulty" name="difficulty" class="form-select">
+                                    <option value="Low">简单</option>
+                                    <option value="Mid" selected>中等</option>
+                                    <option value="High">困难</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="is_multiple" name="is_multiple">
+                                    <label class="form-check-label" for="is_multiple">
+                                        多选题
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 可见性设置 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_public" name="is_public" checked>
+                                    <label class="form-check-label" for="is_public">
+                                        公开题目
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="visible" name="visible" checked>
+                                    <label class="form-check-label" for="visible">
+                                        题目可见
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 选项设置 -->
+                        <h4 class="mb-3">选项设置</h4>
+                        <input type="hidden" name="option_count" value="4">
+                        
+                        {% for i in "1234" %}
+                        <div class="mb-3">
+                            <label for="option_{{ i }}" class="form-label">选项 {{ i }}:</label>
+                            <div class="input-group">
+                                <input type="text" id="option_{{ i }}" name="option_{{ i }}" class="form-control" placeholder="请输入选项内容">
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" name="correct_{{ i }}" value="on">
+                                    <label class="ms-2">正确答案</label>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>提示：</strong>
+                            <ul class="mb-0 mt-2">
+                                <li>至少需要设置一个正确答案</li>
+                                <li>单选题只能有一个正确答案，多选题可以有多个正确答案</li>
+                                <li>题目描述和解析支持Markdown格式</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% url 'choice:list' %}" class="btn btn-secondary me-md-2">取消</a>
+                            <button type="submit" class="btn btn-primary">创建选择题</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+select.form-control {
+    height: 38px;
+}
+</style>
+{% endblock %}

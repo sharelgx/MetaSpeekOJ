@@ -1,0 +1,102 @@
+/* 题目管理后台样式 */
+
+/* 选择题模板字段样式 */
+.field-choice_template textarea {
+    font-family: 'Courier New', monospace;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* 题目类型提示样式 */
+#choice-type-notice {
+    background-color: #e7f3ff;
+    border: 1px solid #b3d9ff;
+    border-radius: 4px;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+/* 选择题选项内联编辑样式 */
+.tabular.inline-related {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.tabular.inline-related thead th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.tabular.inline-related .field-sequence {
+    width: 80px;
+}
+
+.tabular.inline-related .field-is_correct {
+    width: 100px;
+    text-align: center;
+}
+
+.tabular.inline-related .field-content {
+    min-width: 300px;
+}
+
+/* 复制按钮样式 */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* 字段集样式优化 */
+fieldset.module {
+    margin-bottom: 20px;
+}
+
+fieldset.module h2 {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 15px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 隐藏字段的过渡效果 */
+.form-row {
+    transition: opacity 0.3s ease;
+}
+
+.form-row.hidden {
+    opacity: 0.3;
+}
+
+/* 题目类型字段高亮 */
+.field-problem_type select {
+    border: 2px solid #007cba;
+    background-color: #f0f8ff;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .tabular.inline-related .field-content {
+        min-width: 200px;
+    }
+    
+    #choice-type-notice {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
