@@ -32,7 +32,6 @@ class ProblemIOMode(Choices):
 
 class ProblemType(Choices):
     PROGRAMMING = "Programming"
-    CHOICE = "Choice"
 
 
 def _default_io_mode():

@@ -43,11 +43,7 @@ urlpatterns = [
     url(r"^api/admin/", include("contest.urls.admin")),
     url(r"^api/", include("submission.urls.oj")),
     url(r"^api/admin/", include("submission.urls.admin")),
-    url(r"^api/", include("choice.urls")),
     url(r"^api/admin/", include("utils.urls")),
-    
-    # Choice app direct routes
-    url(r"^choice/", include("choice.urls")),
     
     # Static files from frontend build
     url(r'^static/(?P<path>css/loader\.css)$', serve, {'document_root': '/home/sharelgx/OnlineJudgeFE/dist/static', 'show_indexes': False}, name='loader_css'),
